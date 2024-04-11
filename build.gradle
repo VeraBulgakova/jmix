@@ -40,7 +40,7 @@ dependencies {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
     testImplementation 'io.jmix.flowui:jmix-flowui-test-assist'
-    implementation 'org.hsqldb:hsqldb'
+    implementation 'org.postgresql:postgresql'
 }
 
 test {
