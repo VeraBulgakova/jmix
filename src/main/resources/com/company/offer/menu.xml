@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://jmix.io/schema/flowui/menu">
+
+    <menu id="application" title="msg://com.company.offer/menu.application.title" opened="true">
+        <item view="User.list" title="msg://com.company.offer.view.user/UserListView.title"/>
+        <item view="Offer.list" title="msg://com.company.offer.view.offer/offerListView.title"/>
+        <item view="ContractSubtype.list"
+              title="msg://com.company.offer.view.contractsubtype/contractSubtypeListView.title"/>
+        <item view="CoverageClass.list" title="msg://com.company.offer.view.coverageclass/coverageClassListView.title"/>
+        <item view="Insurant.list" title="msg://com.company.offer.view.insurant/insurantListView.title"/>
+        <item view="Partner.list" title="msg://com.company.offer.view.partner/partnerListView.title"/>
+        <item view="PoolOfReinsurers.list"
+              title="msg://com.company.offer.view.poolofreinsurers/poolOfReinsurersListView.title"/>
+        <item view="PrimaryInsurant.list"
+              title="msg://com.company.offer.view.primaryinsurant/primaryInsurantListView.title"/>
+        <item view="Reinsurer.list" title="msg://com.company.offer.view.reinsurer/reinsurerListView.title"/>
+        <item view="ReinsurerType.list" title="msg://com.company.offer.view.reinsurertype/reinsurerTypeListView.title"/>
+        <item view="Signer.list" title="msg://com.company.offer.view.signer/signerListView.title"/>
+    </menu>
+
+</menu-config>

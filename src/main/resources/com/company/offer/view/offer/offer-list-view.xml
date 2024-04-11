@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
+      title="msg://offerListView.title"
+      focusComponent="offersDataGrid">
+    <data>
+        <collection id="offersDc"
+                    class="com.company.offer.entity.Offer">
+            <fetchPlan extends="_base">
+                <property name="partner">
+                    <property name="partnerName"/>
+                </property>
+                <property name="insurant" fetchPlan="_base"/>
+                <property name="contractSubtype" fetchPlan="_base"/>
+                <property name="coverageClass" fetchPlan="_base"/>
+                <property name="reinsurer" fetchPlan="_base"/>
+                <property name="reinsurerType" fetchPlan="_base"/>
+                <property name="poolOfReinsurers" fetchPlan="_base"/>
+                <property name="nameOfSignerFromPartner" fetchPlan="_base"/>
+                <property name="primaryInsurant" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="offersDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from Offer e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <urlQueryParameters>
+            <genericFilter component="genericFilter"/>
+            <pagination component="pagination"/>
+        </urlQueryParameters>
+    </facets>
+    <actions>
+        <action id="selectAction" type="lookup_select"/>
+        <action id="discardAction" type="lookup_discard"/>
+    </actions>
+    <layout>
+        <genericFilter id="genericFilter"
+                       dataLoader="offersDl">
+            <properties include=".*"/>
+        </genericFilter>
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <button id="createBtn" action="offersDataGrid.create"/>
+            <button id="editBtn" action="offersDataGrid.edit"/>
+            <button id="removeBtn" action="offersDataGrid.remove"/>
+            <simplePagination id="pagination" dataLoader="offersDl"/>
+        </hbox>
+        <dataGrid id="offersDataGrid"
+                  width="100%"
+                  minHeight="20em"
+                  dataContainer="offersDc"
+                  columnReorderingAllowed="true">
+            <actions>
+                <action id="create" type="list_create"/>
+                <action id="edit" type="list_edit"/>
+                <action id="remove" type="list_remove"/>
+            </actions>
+            <columns resizable="true">
+                <column property="numberContract"/>
+                <column property="partner"/>
+                <column property="insurant"/>
+                <column property="contractForm"/>
+                <column property="missDuplicateMessageForNumberContract"/>
+                <column property="contractType"/>
+                <column property="optionalAttribute"/>
+                <column property="generalContractWithDeclarations"/>
+                <column property="accountByReinsurers"/>
+                <column property="contractSubtype"/>
+                <column property="coverageClass"/>
+                <column property="obligCession"/>
+                <column property="obligCessionPrecent"/>
+                <column property="isListOfReinsurers"/>
+                <column property="reinsurerType"/>
+                <column property="poolOfReinsurers"/>
+                <column property="bordeuroCalculations"/>
+                <column property="share"/>
+                <column property="retrocession"/>
+                <column property="startDateInsurance"/>
+                <column property="endDateInsurance"/>
+                <column property="periodInsurance"/>
+                <column property="startDateReinsurance"/>
+                <column property="endDateReinsurance"/>
+                <column property="periodReinsurance"/>
+                <column property="emailContact"/>
+                <column property="emailReinsurer"/>
+                <column property="signingForm"/>
+                <column property="nameOfSignerFromPartner"/>
+                <column property="primaryInsurant"/>
+            </columns>
+        </dataGrid>
+        <hbox id="lookupActions" visible="false">
+            <button id="selectBtn" action="selectAction"/>
+            <button id="discardBtn" action="discardAction"/>
+        </hbox>
+    </layout>
+</view>

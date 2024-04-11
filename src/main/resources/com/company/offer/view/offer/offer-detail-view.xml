@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://offerDetailView.title"
+      focusComponent="form">
+    <data>
+        <instance id="offerDc"
+                  class="com.company.offer.entity.Offer">
+            <fetchPlan extends="_base">
+                <property name="partner">
+                    <property name="partnerName"/>
+                </property>
+                <property name="insurant" fetchPlan="_base"/>
+                <property name="contractSubtype" fetchPlan="_base"/>
+                <property name="coverageClass" fetchPlan="_base"/>
+                <property name="reinsurer" fetchPlan="_base"/>
+                <property name="reinsurerType" fetchPlan="_base"/>
+                <property name="poolOfReinsurers" fetchPlan="_base"/>
+                <property name="nameOfSignerFromPartner" fetchPlan="_base"/>
+                <property name="primaryInsurant" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader/>
+            <collection id="reinsurerDc" property="reinsurer"/>
+        </instance>
+        <instance class="com.company.offer.entity.ContractSubtype" id="contractSubtypeDc">
+            <fetchPlan extends="_base">
+                <property name="name"/>
+            </fetchPlan>
+
+            <loader id="contractSubtypeDl"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+<!--    <actions>-->
+<!--        <action id="saveAction" type="detail_saveClose"/>-->
+<!--        <action id="closeAction" type="detail_close"/>-->
+<!--    </actions>-->
+    <layout>
+        <tabSheet id="tabSheet" width="100%">
+            <tab id="defaultTab" label="Default label position">
+        <formLayout id="form" dataContainer="offerDc" labelsPosition="ASIDE">
+            <responsiveSteps>
+                <responsiveStep minWidth="50rem" columns="1" labelsPosition="ASIDE"/>
+                <responsiveStep minWidth="50rem" columns="1" labelsPosition="ASIDE"/>
+            </responsiveSteps>
+            <formItem>
+            <textField id="numberContractField" property="numberContract"
+                       minWidth="100%" label="msg://numberContractField.label"/>
+            </formItem>
+            <formItem>
+            <textField id="contractFormField" property="contractForm" label="Форма оферты/договора" minWidth="100%"/>
+            </formItem>
+<!--            <textField id="contractFormField" property="contractForm" label="Форма оферты/договора" minWidth="100%"/>-->
+<!--            <select id="contractTypeField" property="contractType" label="Тип договора" minWidth="100%"/>-->
+<!--&lt;!&ndash;            <select id="contractSubtypeField" property="contractSubtype" label="Подтип договора" minWidth="100%"/>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;            <entityPicker id="contractSubtypeField" property="contractSubtype" label="Подтип договора" minWidth="100%">&ndash;&gt;-->
+<!--&lt;!&ndash;                <actions>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <action id="entityLookup" type="entity_lookup"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <action id="entityClear" type="entity_clear"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                </actions>&ndash;&gt;-->
+<!--&lt;!&ndash;            </entityPicker>&ndash;&gt;-->
+<!--            <checkbox id="isListOfReinsurersField" property="isListOfReinsurers"-->
+<!--                              label="Наличие нескольких перестрахователей" minWidth="100%"/>-->
+<!--            <entityPicker id="reinsurerTypeField" property="reinsurerType" label="Перестрахователи" minWidth="100%">-->
+<!--                <actions>-->
+<!--                    <action id="entityLookup" type="entity_lookup"/>-->
+<!--                    <action id="entityClear" type="entity_clear"/>-->
+<!--                </actions>-->
+<!--            </entityPicker>-->
+<!--            <datePicker id="startDateInsuranceField" property="startDateInsurance" label="с" minWidth="100%"/>-->
+<!--            <datePicker id="endDateInsuranceField" property="endDateInsurance" label="по" minWidth="100%"/>-->
+<!--            <textField id="periodInsuranceField" property="periodInsurance" label="дней" minWidth="100%"/>-->
+<!--            <entityPicker id="coverageClassField" property="coverageClass" label="Класс покрытия" minWidth="100%">-->
+<!--                <actions>-->
+<!--                    <action id="entityLookup" type="entity_lookup"/>-->
+<!--                    <action id="entityClear" type="entity_clear"/>-->
+<!--                </actions>-->
+<!--            </entityPicker>-->
+<!--            <checkbox id="obligCessionField" property="obligCession" label="Обязательная цессия" minWidth="100%"/>-->
+<!--            <checkbox id="obligCessionPrecentField" property="obligCessionPrecent" label="Норма обязательной цессии" minWidth="100%"/>-->
+<!--            <textField id="emailContactField" property="emailContact" label="Email для контакта по оферте" minWidth="100%"/>-->
+<!--            <entityPicker id="partnerField" property="partner" label="Контрагент" minWidth="100%"-->
+<!--                          maxHeight="400px">-->
+<!--                <actions>-->
+<!--                    <action id="entityLookup" type="entity_lookup"/>-->
+<!--                    <action id="entityClear" type="entity_clear"/>-->
+<!--                </actions>-->
+<!--            </entityPicker>-->
+<!--            <entityPicker id="insurantField" property="insurant" label="Страхователь" minWidth="100%">-->
+<!--                <actions>-->
+<!--                    <action id="entityLookup" type="entity_lookup"/>-->
+<!--                    <action id="entityClear" type="entity_clear"/>-->
+<!--                </actions>-->
+<!--            </entityPicker>-->
+<!--            <checkbox id="missDuplicateMessageForNumberContractField" property="missDuplicateMessageForNumberContract"-->
+<!--                      label="Пропустить номер"/>-->
+<!--            <checkbox id="optionalAttributeField" property="optionalAttribute" label="Облигаторный договор"/>-->
+<!--            <checkbox id="generalContractWithDeclarationsField" property="generalContractWithDeclarations"-->
+<!--                      label="Генеральный договор с декларациями"-->
+<!--                      visible="false"/>-->
+<!--            <checkbox id="accountByReinsurersField" property="accountByReinsurers"-->
+<!--                      label="Расчеты через перестрахователя"/>-->
+<!--            <entityPicker id="poolOfReinsurersField" property="poolOfReinsurers" label="Пул перестрахователей">-->
+<!--                <actions>-->
+<!--                    <action id="entityLookup" type="entity_lookup"/>-->
+<!--                    <action id="entityClear" type="entity_clear"/>-->
+<!--                </actions>-->
+<!--            </entityPicker>-->
+<!--            <checkbox id="bordeuroCalculationsField" property="bordeuroCalculations"-->
+<!--                      label="Выполнение расчетов по бордеро"/>-->
+<!--            <textField id="shareField" property="share" label="Доля участия (%)"/>-->
+<!--            <checkbox id="retrocessionField" property="retrocession" label="Ретроцессия"/>-->
+<!--            <entityPicker id="primaryInsurantField" property="primaryInsurant" label="Первичный страховщик">-->
+<!--                <actions>-->
+<!--                    <action id="entityLookup" type="entity_lookup"/>-->
+<!--                    <action id="entityClear" type="entity_clear"/>-->
+<!--                </actions>-->
+<!--            </entityPicker>-->
+<!--            <datePicker id="startDateReinsuranceField" property="startDateReinsurance" label="с"/>-->
+<!--            <datePicker id="endDateReinsuranceField" property="endDateReinsurance" label="по"/>-->
+<!--            <textField id="periodReinsuranceField" property="periodReinsurance" label="дней"/>-->
+<!--            <textField id="emailReinsurerField" property="emailReinsurer" label="Email перестрахователя"/>-->
+<!--            <select id="signingFormField" property="signingForm" label="ФИО подписанта от контрагента"/>-->
+<!--            <entityPicker id="nameOfSignerFromPartnerField" property="nameOfSignerFromPartner" label="Форма подписания">-->
+<!--                <actions>-->
+<!--                    <action id="entityLookup" type="entity_lookup"/>-->
+<!--                    <action id="entityClear" type="entity_clear"/>-->
+<!--                </actions>-->
+<!--            </entityPicker>-->
+
+        </formLayout>
+            </tab>
+        </tabSheet>
+        <!--        <h4 text="msg://com.company.offer.entity/Offer.reinsurer"/>-->
+<!--        <hbox id="buttonsPanel" classNames="buttons-panel">-->
+<!--            <button action="reinsurerDataGrid.create"/>-->
+<!--            <button action="reinsurerDataGrid.remove"/>-->
+<!--        </hbox>-->
+<!--        <dataGrid id="reinsurerDataGrid" dataContainer="reinsurerDc" width="100%" minHeight="20em">-->
+<!--            <actions>-->
+<!--                <action id="create" type="list_create">-->
+<!--                    <properties>-->
+<!--                        <property name="openMode" value="DIALOG"/>-->
+<!--                    </properties>-->
+<!--                </action>-->
+<!--                <action id="remove" type="list_remove"/>-->
+<!--            </actions>-->
+<!--            <columns>-->
+<!--                <column property="partnerName"/>-->
+<!--            </columns>-->
+<!--        </dataGrid>-->
+<!--        <hbox id="detailActions">-->
+<!--            <button id="saveAndCloseBtn" action="saveAction"/>-->
+<!--            <button id="closeBtn" action="closeAction"/>-->
+<!--        </hbox>-->
+    </layout>
+</view>

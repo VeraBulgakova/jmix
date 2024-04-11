@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
+      title="msg://coverageClassListView.title"
+      focusComponent="coverageClassesDataGrid">
+    <data>
+        <collection id="coverageClassesDc"
+                    class="com.company.offer.entity.CoverageClass">
+            <fetchPlan extends="_base"/>
+            <loader id="coverageClassesDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from CoverageClass e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <urlQueryParameters>
+            <genericFilter component="genericFilter"/>
+            <pagination component="pagination"/>
+        </urlQueryParameters>
+    </facets>
+    <actions>
+        <action id="selectAction" type="lookup_select"/>
+        <action id="discardAction" type="lookup_discard"/>
+    </actions>
+    <layout>
+        <genericFilter id="genericFilter"
+                       dataLoader="coverageClassesDl">
+            <properties include=".*"/>
+        </genericFilter>
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <button id="createBtn" action="coverageClassesDataGrid.create"/>
+            <button id="editBtn" action="coverageClassesDataGrid.edit"/>
+            <button id="removeBtn" action="coverageClassesDataGrid.remove"/>
+            <simplePagination id="pagination" dataLoader="coverageClassesDl"/>
+        </hbox>
+        <dataGrid id="coverageClassesDataGrid"
+                  width="100%"
+                  minHeight="20em"
+                  dataContainer="coverageClassesDc"
+                  columnReorderingAllowed="true">
+            <actions>
+                <action id="create" type="list_create"/>
+                <action id="edit" type="list_edit"/>
+                <action id="remove" type="list_remove"/>
+            </actions>
+            <columns resizable="true">
+                <column property="name"/>
+            </columns>
+        </dataGrid>
+        <hbox id="lookupActions" visible="false">
+            <button id="selectBtn" action="selectAction"/>
+            <button id="discardBtn" action="discardAction"/>
+        </hbox>
+    </layout>
+</view>
